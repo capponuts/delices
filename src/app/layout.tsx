@@ -4,6 +4,24 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
+function resolveMetadataBase(): URL {
+  const candidates = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined,
+  ].filter(Boolean) as string[];
+
+  for (const value of candidates) {
+    const withScheme = value.startsWith("http") ? value : `https://${value}`;
+    try {
+      return new URL(withScheme);
+    } catch {
+      // try next candidate
+    }
+  }
+  return new URL("https://example.com");
+}
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,11 +33,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ||
-      process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://delices.example")
-  ),
+  metadataBase: resolveMetadataBase(),
   title: {
     default: "Délices & Services — Livraison de repas à domicile",
     template: "%s | Délices & Services",
