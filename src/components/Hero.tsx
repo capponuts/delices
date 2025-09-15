@@ -21,26 +21,26 @@ export function Hero() {
       >
         <source src="/videosables.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/20" />
       <div className="absolute inset-0 flex items-center">
-        <div className="container mx-auto px-6 sm:px-8">
+        <div className="container mx-auto max-w-7xl px-6 sm:px-8">
           <div className="mb-4">
             <Image
               src="/Delices-et-services0.png"
               alt="Logo Délices & Services"
-              width={200}
-              height={60}
-              className="w-auto h-10 sm:h-12"
+              width={320}
+              height={96}
+              className="w-auto h-14 sm:h-16 md:h-20"
             />
           </div>
           <motion.div
             initial="hidden"
             animate="show"
             variants={fadeIn}
-            className="max-w-2xl text-white"
+            className="max-w-2xl text-white backdrop-blur-[2px] sm:backdrop-blur-0 sm:bg-transparent bg-black/30 p-4 sm:p-0 rounded-lg"
           >
             <h1 className="text-4xl sm:text-5xl font-semibold leading-tight">
-              Portage de Repas à Domicile
+              Délices & Services — Portage de Repas à Domicile
             </h1>
             <p className="mt-2 text-lg sm:text-xl text-white">
               N°1 sur le Pays des Olonnes

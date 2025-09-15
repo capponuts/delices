@@ -80,9 +80,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/icon.png",
-    apple: "/apple-icon.png",
-    shortcut: "/favicon.ico",
+    icon: "/Delices-et-services0.png",
+    apple: "/Delices-et-services0.png",
+    shortcut: "/Delices-et-services0.png",
   },
   themeColor: "#ffffff",
 };

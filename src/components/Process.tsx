@@ -21,10 +21,10 @@ export function Process() {
       <h2 className="text-2xl sm:text-3xl font-semibold">Comment ça marche</h2>
       <ol className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
         {steps.map((s, i) => (
-          <li key={i} className="rounded-xl border border-black/10 dark:border-white/10 p-6">
-            <div className="text-sm text-black/60 dark:text-white/60">{s.step}</div>
+          <li key={i} className="rounded-xl border border-black/10 p-6 bg-white text-black shadow-sm">
+            <div className="text-sm text-black/60">{s.step}</div>
             <div className="mt-2 text-lg font-semibold">{s.title}</div>
-            <p className="mt-1 text-sm text-black/70 dark:text-white/70">{s.desc}</p>
+            <p className="mt-1 text-sm text-black/70">{s.desc}</p>
           </li>
         ))}
       </ol>

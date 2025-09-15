@@ -26,7 +26,7 @@ export function MenuCards() {
       <h2 className="text-2xl sm:text-3xl font-semibold">Nos Menus</h2>
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         {menus.map((m) => (
-          <div key={m.title} className="rounded-2xl border border-black/10 p-6 bg-white">
+          <div key={m.title} className="rounded-2xl border border-black/10 p-6 bg-white text-black shadow-sm">
             <Image
               src={m.img}
               alt={m.title}

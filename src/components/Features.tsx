@@ -45,11 +45,11 @@ export function Features() {
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeIn}
-            className="rounded-xl border border-black/10 dark:border-white/10 p-6 bg-white dark:bg-black"
+            className="rounded-xl border border-black/10 p-6 bg-white text-black shadow-sm"
           >
             <div className="text-black dark:text-white">{f.icon}</div>
             <h3 className="mt-3 text-lg font-semibold">{f.title}</h3>
-            <p className="mt-2 text-sm text-black/70 dark:text-white/70">{f.desc}</p>
+            <p className="mt-2 text-sm text-black/70">{f.desc}</p>
           </motion.div>
         ))}
       </div>
