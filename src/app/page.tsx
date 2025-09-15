@@ -3,6 +3,9 @@ import { Features } from "@/components/Features";
 import { Menus } from "@/components/Menus";
 import { Process } from "@/components/Process";
 import { CTA } from "@/components/CTA";
+import { Footer } from "@/components/Footer";
+import { About } from "@/components/About";
+import { MenuCards } from "@/components/MenuCards";
 
 export default function Home() {
   return (
@@ -10,18 +13,11 @@ export default function Home() {
       <Hero />
       <Features />
       <Menus />
+      <About />
+      <MenuCards />
       <Process />
       <CTA />
-      <footer className="py-8 border-t border-black/10 dark:border-white/10">
-        <div className="container mx-auto px-6 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-sm text-black/60 dark:text-white/60">© {new Date().getFullYear()} Délices & Services</div>
-          <nav className="flex items-center gap-4 text-sm">
-            <a href="#services" className="hover:underline">Services</a>
-            <a href="#menus" className="hover:underline">Menus</a>
-            <a href="#contact" className="hover:underline">Contact</a>
-          </nav>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

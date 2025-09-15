@@ -84,6 +84,7 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
     shortcut: "/favicon.ico",
   },
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
