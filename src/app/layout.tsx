@@ -19,7 +19,7 @@ function resolveMetadataBase(): URL {
       // try next candidate
     }
   }
-  return new URL("https://example.com");
+  return new URL("https://delices-et-services.fr");
 }
 
 const geistSans = Geist({

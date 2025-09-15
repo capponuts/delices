@@ -1,4 +1,5 @@
 import { Download } from "lucide-react";
+import Image from "next/image";
 
 export function MenuCards() {
   const menus = [
@@ -26,7 +27,13 @@ export function MenuCards() {
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         {menus.map((m) => (
           <div key={m.title} className="rounded-2xl border border-black/10 p-6 bg-white">
-            <img src={m.img} alt={m.title} className="w-full h-48 object-cover rounded-lg mb-4" />
+            <Image
+              src={m.img}
+              alt={m.title}
+              width={800}
+              height={600}
+              className="w-full h-48 object-cover rounded-lg mb-4"
+            />
             <h3 className="text-xl font-semibold">{m.title}</h3>
             <p className="mt-2 text-sm text-black/70">{m.desc}</p>
             <a

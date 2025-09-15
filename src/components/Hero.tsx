@@ -11,15 +11,17 @@ const fadeIn = {
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <Image
-        src="/images/hero.jpg"
-        alt="Plateaux de repas équilibrés"
-        width={1920}
-        height={1080}
+      <video
         className="w-full h-[70vh] object-cover"
-        priority
-      />
-      <div className="absolute inset-0 bg-black/40" />
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/images/hero.jpg"
+      >
+        <source src="/videosables.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-black/30" />
       <div className="absolute inset-0 flex items-center">
         <div className="container mx-auto px-6 sm:px-8">
           <div className="mb-4">
