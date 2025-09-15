@@ -8,9 +8,10 @@ export function Footer() {
         <div>
           Téléphone : <a href="tel:+33251900116" className="underline">02 51 90 01 16</a> —
           Courriel : <a href="mailto:contact@delices-et-services.fr" className="underline">contact@delices-et-services.fr</a>
+          — Facebook : <a href="https://www.facebook.com/delices.services" target="_blank" rel="noopener noreferrer" className="underline">facebook.com/delices.services</a>
         </div>
         <div>
-          Copyright © {new Date().getFullYear()} - Tous droits réservés - Site Web réalisé par la société Kapinfo.
+          Copyright © {new Date().getFullYear()} - Tous droits réservés - Site Web réalisé par la société <a className="underline" href="https://www.kapinfo.fr" target="_blank" rel="noopener noreferrer">Kapinfo</a>.
         </div>
       </div>
     </footer>
