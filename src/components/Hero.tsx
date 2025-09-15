@@ -22,6 +22,15 @@ export function Hero() {
       <div className="absolute inset-0 bg-black/40" />
       <div className="absolute inset-0 flex items-center">
         <div className="container mx-auto px-6 sm:px-8">
+          <div className="mb-4">
+            <Image
+              src="/Delices-et-services0.png"
+              alt="Logo Délices & Services"
+              width={200}
+              height={60}
+              className="w-auto h-10 sm:h-12"
+            />
+          </div>
           <motion.div
             initial="hidden"
             animate="show"
@@ -29,11 +38,13 @@ export function Hero() {
             className="max-w-2xl text-white"
           >
             <h1 className="text-4xl sm:text-5xl font-semibold leading-tight">
-              Livraison de repas à domicile, simple et savoureuse
+              Portage de Repas à Domicile
             </h1>
-            <p className="mt-4 text-white/90">
-              Des menus équilibrés, flexibles et prêts à déguster. Pour vous, vos
-              proches et vos équipes.
+            <p className="mt-2 text-lg sm:text-xl text-white">
+              N°1 sur le Pays des Olonnes
+            </p>
+            <p className="mt-2 text-white/90">
+              Gamme 100% Sablaise - Qualité Traiteur - Sans engagement - Depuis 2014
             </p>
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <a

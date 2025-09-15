@@ -8,6 +8,7 @@ export function MenuCards() {
         "Des repas équilibrés, préparés avec des ingrédients frais, pour une alimentation saine et variée au quotidien. Idéal pour prendre soin de votre santé.",
       href: "mailto:contact@delices-et-services.fr?subject=Demande%20Menu%20%C3%89quilibre",
       cta: "Télécharger le menu Équilibre",
+      img: "/menu-equilibre.jpg",
     },
     {
       title: "Menu Traiteur",
@@ -15,6 +16,7 @@ export function MenuCards() {
         "Laissez-vous tenter par nos créations culinaires ! Des plats savoureux et raffinés, comme si vous étiez au restaurant, livrés chez vous.",
       href: "mailto:contact@delices-et-services.fr?subject=Demande%20Menu%20Traiteur",
       cta: "Télécharger le menu Traiteur",
+      img: "/menu-traiteur.jpg",
     },
   ];
 
@@ -24,6 +26,7 @@ export function MenuCards() {
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         {menus.map((m) => (
           <div key={m.title} className="rounded-2xl border border-black/10 p-6 bg-white">
+            <img src={m.img} alt={m.title} className="w-full h-48 object-cover rounded-lg mb-4" />
             <h3 className="text-xl font-semibold">{m.title}</h3>
             <p className="mt-2 text-sm text-black/70">{m.desc}</p>
             <a
