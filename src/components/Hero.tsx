@@ -22,32 +22,28 @@ export function Hero() {
         <source src="/videosables.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/20" />
-      <div className="absolute inset-0 flex items-center">
-        <div className="container mx-auto max-w-7xl px-6 sm:px-8">
-          <div className="mb-4">
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="container mx-auto max-w-5xl px-6 sm:px-8">
+          <div className="mb-6 flex justify-center">
             <Image
               src="/Delices-et-services0.png"
               alt="Logo Délices & Services"
-              width={320}
-              height={96}
-              className="w-auto h-14 sm:h-16 md:h-20"
+              width={420}
+              height={126}
+              className="w-auto h-16 sm:h-20 md:h-24 lg:h-28"
             />
           </div>
           <motion.div
             initial="hidden"
             animate="show"
             variants={fadeIn}
-            className="max-w-2xl text-white backdrop-blur-[2px] sm:backdrop-blur-0 sm:bg-transparent bg-black/30 p-4 sm:p-0 rounded-lg"
+            className="max-w-3xl mx-auto text-center text-white backdrop-blur-[2px] sm:backdrop-blur-0 sm:bg-transparent bg-black/30 p-4 sm:p-0 rounded-lg"
           >
             <h1 className="text-4xl sm:text-5xl font-semibold leading-tight">
-              Délices & Services — Portage de Repas à Domicile
+              Délices & Services, portage de repas à domicile
             </h1>
-            <p className="mt-2 text-lg sm:text-xl text-white">
-              N°1 sur le Pays des Olonnes
-            </p>
-            <p className="mt-2 text-white/90">
-              Gamme 100% Sablaise - Qualité Traiteur - Sans engagement - Depuis 2014
-            </p>
+            <p className="mt-2 text-lg sm:text-xl text-white">N°1 sur le Pays des Olonnes</p>
+            <p className="mt-2 text-white/90">100% Sablaise • Qualité traiteur • Sans engagement • Depuis 2014</p>
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <a
                 href="#contact"
