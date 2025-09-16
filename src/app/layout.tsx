@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/hero.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Plateaux de repas colorés et équilibrés",
@@ -73,16 +73,16 @@ export const metadata: Metadata = {
     title: "Délices & Services",
     description:
       "Livraison de repas à domicile: menus équilibrés, flexibles et savoureux.",
-    images: ["/images/hero.jpg"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
   },
   icons: {
-    icon: "/Delices-et-services0.png",
-    apple: "/Delices-et-services0.png",
-    shortcut: "/Delices-et-services0.png",
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
+    shortcut: "/favicon.ico",
   },
   themeColor: "#ffffff",
 };
@@ -92,6 +92,38 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ||
+    "https://delices-et-services.fr";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FoodDelivery",
+    name: "Délices & Services",
+    legalName: "EURL D&S Littoral",
+    url: siteUrl,
+    image: `${siteUrl}/og-image.png`,
+    telephone: "+33251900116",
+    email: "contact@delices-et-services.fr",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "FR",
+      addressLocality: "Les Sables-d'Olonne",
+      addressRegion: "Pays de la Loire",
+    },
+    areaServed: [
+      { "@type": "City", name: "Les Sables-d'Olonne" },
+      { "@type": "City", name: "Olonne-sur-Mer" },
+      { "@type": "City", name: "Château-d'Olonne" },
+      { "@type": "AdministrativeArea", name: "Pays des Olonnes" },
+    ],
+    sameAs: ["https://www.facebook.com/delices.services"],
+    priceRange: "€€",
+    slogan: "Portage de repas à domicile — Pays des Olonnes",
+    foundingDate: "2014",
+  };
   return (
     <html lang="fr">
       <body
@@ -100,6 +132,10 @@ export default function RootLayout({
         {children}
         <Analytics />
         <SpeedInsights />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   );
