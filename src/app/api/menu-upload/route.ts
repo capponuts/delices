@@ -5,7 +5,17 @@ import path from "path";
 export const runtime = "nodejs";
 
 function isPdf(file: File | null): file is File {
-  return !!file && (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf"));
+  if (!file) return false;
+  
+  // Vérifier l'extension du fichier (plus fiable)
+  const fileName = file.name.toLowerCase();
+  if (fileName.endsWith(".pdf")) {
+    return true;
+  }
+  
+  // Vérifier le type MIME comme fallback
+  const mimeType = file.type.toLowerCase();
+  return mimeType === "application/pdf" || mimeType === "application/x-pdf";
 }
 
 export async function POST(request: Request) {
