@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { tempStorage } from "@/lib/temp-storage";
+import { getUploadedFileUrl } from "@/lib/uploaded-files";
 
 export async function GET(
   request: Request,
@@ -8,21 +8,17 @@ export async function GET(
   try {
     const filename = params.filename;
     
-    // Vérifier que le fichier existe dans le stockage temporaire
-    const fileBuffer = tempStorage.get(filename);
+    // Vérifier si le fichier a été uploadé
+    const blobUrl = getUploadedFileUrl(filename);
     
-    if (!fileBuffer) {
-      return new NextResponse("Fichier non trouvé", { status: 404 });
+    if (blobUrl) {
+      // Rediriger vers l'URL Blob
+      return NextResponse.redirect(blobUrl);
     }
     
-    // Retourner le fichier PDF
-    return new NextResponse(fileBuffer, {
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `inline; filename="${filename}"`,
-        "Cache-Control": "public, max-age=3600", // Cache pour 1 heure
-      },
-    });
+    // Si aucun fichier uploadé, essayer de servir le fichier par défaut
+    const defaultUrl = `/${filename}`;
+    return NextResponse.redirect(new URL(defaultUrl, request.url));
   } catch (error) {
     console.error("Erreur lors du téléchargement:", error);
     return new NextResponse("Erreur lors du téléchargement", { status: 500 });

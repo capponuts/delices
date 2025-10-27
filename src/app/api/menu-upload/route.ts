@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { tempStorage } from "@/lib/temp-storage";
+import { put } from "@vercel/blob";
+import { setUploadedFileUrl } from "@/lib/uploaded-files";
 
 export const runtime = "nodejs";
 
@@ -53,9 +54,15 @@ export async function POST(request: Request) {
     for (const { targetName, file } of filesToWrite) {
       const bytes = Buffer.from(await file.arrayBuffer());
       
-      // Stocker en mémoire temporairement
-      tempStorage.set(targetName, bytes);
-      results[targetName] = "updated";
+      // Upload vers Vercel Blob avec accès public
+      const { url } = await put(targetName, bytes, { 
+        access: 'public',
+        contentType: 'application/pdf'
+      });
+      
+      // Stocker l'URL pour référence future
+      setUploadedFileUrl(targetName, url);
+      results[targetName] = url;
     }
 
     if (wantsRedirect) {
