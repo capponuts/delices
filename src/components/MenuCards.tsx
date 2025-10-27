@@ -1,57 +1,32 @@
 "use client";
-import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
 import Image from "next/image";
 
 interface MenuData {
   title: string;
   desc: string;
-  defaultHref: string;
+  href: string;
   cta: string;
   img: string;
 }
 
 export function MenuCards() {
-  const [uploadedUrls, setUploadedUrls] = useState<Record<string, string | null>>({});
-  
   const menus: MenuData[] = [
     {
       title: "Menu Équilibre",
       desc: "Des repas équilibrés, préparés avec des ingrédients frais, pour une alimentation saine et variée au quotidien. Idéal pour prendre soin de votre santé.",
-      defaultHref: "/menu-equilibre.pdf",
+      href: "/api/menu-download/menu-equilibre.pdf",
       cta: "Télécharger le menu Équilibre (PDF)",
       img: "/menu-equilibre.jpg",
     },
     {
       title: "Menu Traiteur",
       desc: "Laissez-vous tenter par nos créations culinaires ! Des plats savoureux et raffinés, comme si vous étiez au restaurant, livrés chez vous.",
-      defaultHref: "/menu-traiteur.pdf",
+      href: "/api/menu-download/menu-traiteur.pdf",
       cta: "Télécharger le menu Traiteur (PDF)",
       img: "/menu-traiteur.jpg",
     },
   ];
-
-  useEffect(() => {
-    // Récupérer les URLs depuis localStorage
-    const equilibreUrl = localStorage.getItem("uploaded_menu_equilibre_url");
-    const traiteurUrl = localStorage.getItem("uploaded_menu_traiteur_url");
-    
-    setUploadedUrls({
-      "menu-equilibre.pdf": equilibreUrl,
-      "menu-traiteur.pdf": traiteurUrl,
-    });
-  }, []);
-
-  const getFileHref = (menu: MenuData): string => {
-    const filename = menu.defaultHref.replace("/", "");
-    const uploadedUrl = uploadedUrls[filename];
-    
-    if (uploadedUrl) {
-      return uploadedUrl;
-    }
-    
-    return menu.defaultHref;
-  };
 
   return (
     <section className="container mx-auto px-6 sm:px-8 py-12">
@@ -69,7 +44,7 @@ export function MenuCards() {
             <h3 className="text-xl font-semibold">{menu.title}</h3>
             <p className="mt-2 text-sm text-black/70">{menu.desc}</p>
             <a
-              href={getFileHref(menu)}
+              href={menu.href}
               download
               target="_blank"
               rel="noopener noreferrer"

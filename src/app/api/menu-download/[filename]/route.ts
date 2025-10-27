@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getUploadedFileUrl } from "@/lib/uploaded-files";
+import { head } from "@vercel/blob";
 
 export async function GET(
   request: Request,
@@ -8,12 +8,16 @@ export async function GET(
   try {
     const { filename } = await params;
     
-    // Vérifier si le fichier a été uploadé
-    const blobUrl = getUploadedFileUrl(filename);
-    
-    if (blobUrl) {
-      // Rediriger vers l'URL Blob
-      return NextResponse.redirect(blobUrl);
+    // Vérifier si le fichier existe dans Vercel Blob
+    try {
+      const blobInfo = await head(filename);
+      if (blobInfo) {
+        // Le fichier existe dans Blob, rediriger vers l'URL Blob
+        return NextResponse.redirect(blobInfo.url);
+      }
+    } catch (error) {
+      // Le fichier n'existe pas dans Blob, continuer avec le fichier par défaut
+      console.log(`Fichier ${filename} non trouvé dans Blob, utilisation du fichier par défaut`);
     }
     
     // Si aucun fichier uploadé, essayer de servir le fichier par défaut
