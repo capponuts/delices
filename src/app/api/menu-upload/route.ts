@@ -66,7 +66,20 @@ export async function POST(request: Request) {
     }
 
     if (wantsRedirect) {
-      return NextResponse.redirect(new URL("/menu?success=1", request.url));
+      // Construire l'URL de redirection avec les URLs Blob
+      const url = new URL("/menu", request.url);
+      url.searchParams.set("success", "1");
+      
+      // Ajouter les URLs des fichiers uploadés comme paramètres
+      Object.entries(results).forEach(([filename, blobUrl]) => {
+        if (filename === "menu-equilibre.pdf") {
+          url.searchParams.set("equilibre_url", blobUrl);
+        } else if (filename === "menu-traiteur.pdf") {
+          url.searchParams.set("traiteur_url", blobUrl);
+        }
+      });
+      
+      return NextResponse.redirect(url);
     }
     return NextResponse.json({ ok: true, updated: results });
   } catch (error) {

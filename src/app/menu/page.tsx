@@ -1,6 +1,21 @@
-export default function MenuUploadPage({ searchParams }: { searchParams: { success?: string; error?: string } }) {
+"use client";
+import { useEffect } from "react";
+
+export default function MenuUploadPage({ searchParams }: { searchParams: { success?: string; error?: string; equilibre_url?: string; traiteur_url?: string } }) {
   const success = searchParams?.success === "1";
   const error = searchParams?.error;
+  const equilibreUrl = searchParams?.equilibre_url;
+  const traiteurUrl = searchParams?.traiteur_url;
+
+  useEffect(() => {
+    // Stocker les URLs dans localStorage pour persistance
+    if (equilibreUrl) {
+      localStorage.setItem("uploaded_menu_equilibre_url", equilibreUrl);
+    }
+    if (traiteurUrl) {
+      localStorage.setItem("uploaded_menu_traiteur_url", traiteurUrl);
+    }
+  }, [equilibreUrl, traiteurUrl]);
 
   return (
     <section className="container mx-auto px-6 sm:px-8 py-12">
