@@ -54,10 +54,11 @@ export async function POST(request: Request) {
     for (const { targetName, file } of filesToWrite) {
       const bytes = Buffer.from(await file.arrayBuffer());
       
-      // Upload vers Vercel Blob avec accès public
+      // Upload vers Vercel Blob avec accès public et permission d'écrasement
       const { url } = await put(targetName, bytes, { 
         access: 'public',
-        contentType: 'application/pdf'
+        contentType: 'application/pdf',
+        allowOverwrite: true
       });
       
       // Stocker l'URL pour référence future
