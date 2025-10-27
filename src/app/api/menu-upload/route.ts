@@ -28,14 +28,14 @@ export async function POST(request: Request) {
 
     const filesToWrite: Array<{ targetName: string; file: File }> = [];
 
-    if (menuEquilibre instanceof File) {
+    if (menuEquilibre instanceof File && menuEquilibre.size > 0) {
       if (!isPdf(menuEquilibre)) {
         return NextResponse.json({ ok: false, error: "Le fichier Équilibre doit être un PDF." }, { status: 400 });
       }
       filesToWrite.push({ targetName: "menu-equilibre.pdf", file: menuEquilibre });
     }
 
-    if (menuTraiteur instanceof File) {
+    if (menuTraiteur instanceof File && menuTraiteur.size > 0) {
       if (!isPdf(menuTraiteur)) {
         return NextResponse.json({ ok: false, error: "Le fichier Traiteur doit être un PDF." }, { status: 400 });
       }
@@ -73,7 +73,8 @@ export async function POST(request: Request) {
     }
     return NextResponse.json({ ok: true, updated: results });
   } catch (error) {
-    const message = "Erreur lors du téléversement.";
+    console.error("Erreur lors du téléversement:", error);
+    const message = error instanceof Error ? error.message : "Erreur lors du téléversement.";
     try {
       const { searchParams } = new URL(request.url);
       const wantsRedirect = searchParams.get("redirect") === "1";
