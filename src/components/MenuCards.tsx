@@ -7,7 +7,7 @@ export function MenuCards() {
       title: "Menu Équilibre",
       desc:
         "Des repas équilibrés, préparés avec des ingrédients frais, pour une alimentation saine et variée au quotidien. Idéal pour prendre soin de votre santé.",
-      href: "/menu-equilibre.pdf",
+      href: "/api/menu-download/menu-equilibre.pdf",
       cta: "Télécharger le menu Équilibre (PDF)",
       img: "/menu-equilibre.jpg",
     },
@@ -15,7 +15,7 @@ export function MenuCards() {
       title: "Menu Traiteur",
       desc:
         "Laissez-vous tenter par nos créations culinaires ! Des plats savoureux et raffinés, comme si vous étiez au restaurant, livrés chez vous.",
-      href: "/menu-traiteur.pdf",
+      href: "/api/menu-download/menu-traiteur.pdf",
       cta: "Télécharger le menu Traiteur (PDF)",
       img: "/menu-traiteur.jpg",
     },

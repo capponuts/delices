@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { writeFile, stat } from "fs/promises";
-import path from "path";
+import { tempStorage } from "@/lib/temp-storage";
 
 export const runtime = "nodejs";
 
@@ -49,22 +48,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: "Aucun fichier reçu." }, { status: 400 });
     }
 
-    const publicDir = path.join(process.cwd(), "public");
-
     const results: Record<string, string> = {};
 
     for (const { targetName, file } of filesToWrite) {
       const bytes = Buffer.from(await file.arrayBuffer());
-      const targetPath = path.join(publicDir, targetName);
-
-      // Optional: ensure public dir exists (it does in this app, but keep a safe check)
-      try {
-        await stat(publicDir);
-      } catch {
-        // ignore; Next apps include public/
-      }
-
-      await writeFile(targetPath, bytes);
+      
+      // Stocker en mémoire temporairement
+      tempStorage.set(targetName, bytes);
       results[targetName] = "updated";
     }
 
